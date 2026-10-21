@@ -1,683 +1,529 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>zzq的个人主页</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- SEO -->
   <meta name="description" content="zzq 的个人博客，记录开发与生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zzq的个人主页">
-<meta property="og:url" content="https://cqboy.top/page/2/index.html">
-<meta property="og:site_name" content="zzq的个人主页">
-<meta property="og:description" content="zzq 的个人博客，记录开发与生活">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="zzq">
-<meta name="twitter:card" content="summary">
+  <meta name="keywords" content="">
   
-    <link rel="alternate" href="/atom.xml" title="zzq的个人主页" type="application/atom+xml">
+  <!-- Google Fonts - 字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- LXGW WenKai TC (霞鶩文楷) - 優雅手寫風格中文字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Inter - 英文字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- JetBrains Mono - 程式碼字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Orbitron - 賽博龐克風格字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Audiowide - Cyberpunk 風格字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <!-- Teko - 斜體科幻風格 -->
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Russo One - 粗體科幻風格 -->
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
   
+  <!-- Critical CSS 內聯 -->
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'LXGW WenKai TC','Inter',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.8;color:#1e293b;background:#f8fafc}
+    .container{max-width:900px;margin:0 auto;padding:20px}
+    a{color:#6366f1;text-decoration:none}
+  </style>
   
-    <link rel="shortcut icon" href="/favicon.png">
+  <!-- Prism.js 程式碼高亮 - Tomorrow Night 主題 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
   
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
+  <!-- 完整樣式表 -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/gsap-styles.css">
+  <link rel="stylesheet" href="/css/embeds.css">
+  <link rel="stylesheet" href="/css/cyberpunk.css">
 <meta name="generator" content="Hexo 8.1.2"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">zzq的个人主页</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cqboy.top"></form>
+<body class="cyber-body">
+  <!-- 載入遮罩 -->
+  <div class="page-loader">
+    <div class="loader-content">
+      <div class="loader-glitch" data-text="LOADING">LOADING</div>
+      <div class="loader-bar">
+        <div class="loader-progress"></div>
       </div>
+      <div class="loader-percent">0%</div>
     </div>
   </div>
+
+  <!-- 背景效果層 -->
+  <div class="cyber-bg">
+    <div class="cyber-grid"></div>
+    <div class="cyber-scanline"></div>
+    <canvas id="particle-canvas"></canvas>
+  </div>
+
+  <header class="site-header cyber-header">
+  <div class="container">
+    <div class="header-content">
+      <a href="/" class="site-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">zzq的个人主页</span>
+        <span class="logo-bracket">]</span>
+      </a>
+      <nav class="site-nav">
+        
+          <a href="/" class="nav-link">
+            <span class="nav-text">首頁</span>
+            <span class="nav-line"></span>
+          </a>
+        
+          <a href="/archives" class="nav-link">
+            <span class="nav-text">文章總覽</span>
+            <span class="nav-line"></span>
+          </a>
+        
+          <a href="/about" class="nav-link">
+            <span class="nav-text">關於</span>
+            <span class="nav-line"></span>
+          </a>
+        
+      </nav>
+    </div>
+  </div>
+  <div class="header-line"></div>
 </header>
 
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-使用portainer-agent管理多个节点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E4%BD%BF%E7%94%A8portainer-agent%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E8%8A%82%E7%82%B9/" class="article-date">
-  <time class="dt-published" datetime="2021-03-21T16:00:00.000Z" itemprop="datePublished">2021-03-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+  <main class="site-main">
+    <div class="container">
+      <!-- Hero 區域 - Cyberpunk 2077 風格動畫 -->
+      <section class="hero-section" data-animate="hero">
+        <!-- Cyberpunk 2077 風格 Logo -->
+        <div id="cyber-logo" class="cyber-logo">
+          <!-- 主標題: iThome -->
+          <div class="logo-main">
+            <!-- 青色層 (主層) -->
+            <div class="logo-layer logo-cyan">
+              <span class="logo-char">i</span>
+              <span class="logo-char">T</span>
+              <span class="logo-char">h</span>
+              <span class="logo-char">o</span>
+              <span class="logo-char">m</span>
+              <span class="logo-char">e</span>
+            </div>
+            <!-- 粉色層 (Glitch 層) -->
+            <div class="logo-layer logo-pink" aria-hidden="true">
+              <span class="logo-char">i</span>
+              <span class="logo-char">T</span>
+              <span class="logo-char">h</span>
+              <span class="logo-char">o</span>
+              <span class="logo-char">m</span>
+              <span class="logo-char">e</span>
+            </div>
+          </div>
+          
+          <!-- 副標題: Technical Article -->
+          <div class="logo-sub">
+            <div class="sub-bg"></div>
+            <div class="sub-text sub-text-en">
+              <span class="sub-char">T</span>
+              <span class="sub-char">e</span>
+              <span class="sub-char">c</span>
+              <span class="sub-char">h</span>
+              <span class="sub-char">n</span>
+              <span class="sub-char">i</span>
+              <span class="sub-char">c</span>
+              <span class="sub-char">a</span>
+              <span class="sub-char">l</span>
+              <span class="sub-char">&nbsp;</span>
+              <span class="sub-char">A</span>
+              <span class="sub-char">r</span>
+              <span class="sub-char">t</span>
+              <span class="sub-char">i</span>
+              <span class="sub-char">c</span>
+              <span class="sub-char">l</span>
+              <span class="sub-char">e</span>
+            </div>
+          </div>
+          
+          <!-- 裝飾元素 -->
+          <div class="logo-decor">
+            <span class="decor-line left"></span>
+            <span class="decor-line right"></span>
+            <span class="decor-dot dot-1"></span>
+            <span class="decor-dot dot-2"></span>
+          </div>
+        </div>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E4%BD%BF%E7%94%A8portainer-agent%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E8%8A%82%E7%82%B9/">使用portainer-agent配置管理多个节点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+        <!-- 描述文字 -->
+        <p class="hero-desc">
+          <span class="desc-bracket">[</span>
+          <span class="desc-text">三個系列，90 篇技術文章，從基礎到進階</span>
+          <span class="desc-bracket">]</span>
+        </p>
+        
+        <!-- 統計數據 -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" data-count="3">0</span>
+            <span class="stat-label">SERIES</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="90">0</span>
+            <span class="stat-label">ARTICLES</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="2024">0</span>
+            <span class="stat-label">YEAR</span>
+          </div>
+        </div>
+      </section>
       
-        <p>简单几步，不罗嗦</p>
-<p>登陆portainer后台，点击左侧endpoints菜单</p>
-<p><img src="/images/posts/20220217103755.png" alt="endpoints"></p>
-<p>然后就能看到一个节点的列表，点击Add endpoint按钮，进行添加</p>
-<p><img src="/images/posts/20220217103808.png" alt="Add endpoint"></p>
-<p>进入添加界面后，我们选择使用agent方式。</p>
-<p><img src="/images/posts/20220217103828.png" alt="添加"></p>
-<p>点击copy，复制那一段代码，到你需要被添加的服务器节点上去执行。</p>
-<p>这里可以能会遇到一个问题，就是你直接执行这段的时候，可能不会成功，得先初始化swarm:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker swarm init</span><br></pre></td></tr></table></figure>
-
-<p>创建agent成功之后，将服务器信息填入下面的输入框，name就是节点名字，自己取一个方便好记得，URL为你被添加服务器的IP:9001，后面的都可以默认，点击最下方的添加即可。</p>
-<p>接着点击左侧home菜单，回到首页，即可看到添加的节点</p>
-<p><img src="/images/posts/20220217104920.png" alt="list"></p>
-<p>如没有操作成功，欢迎提问，可以提供你需要的帮助~</p>
-
+      <!-- 系列分類卡片 -->
+      <section class="series-section" data-animate="cards">
+        <div class="section-header">
+          <div class="section-line"></div>
+          <h2 class="section-title">
+            <span class="title-icon">◆</span>
+            選擇系列
+            <span class="title-icon">◆</span>
+          </h2>
+          <div class="section-line"></div>
+        </div>
+        
+        <div class="series-grid">
+          <a href="/categories/C-%E5%9F%BA%E7%A4%8E%E6%95%99%E5%AD%B8/" class="series-card" data-card="cpp">
+            <div class="card-glow"></div>
+            <div class="card-border"></div>
+            <div class="card-content">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/>
+                  <path d="M8 21h8M12 17v4"/>
+                  <path d="M7 8l3 3-3 3M12 14h4"/>
+                </svg>
+              </div>
+              <h3 class="card-title">C++ 基礎教學</h3>
+              <p class="card-desc">從零開始學習 C++ 程式設計，涵蓋基礎語法、資料結構與演算法</p>
+              <div class="card-footer">
+                <div class="card-tag">
+                  <span class="tag-dot"></span>
+                  30 篇文章
+                </div>
+                <div class="card-arrow">
+                  <span>進入</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="card-hologram"></div>
+          </a>
+          
+          <a href="/categories/Flutter-30%E5%A4%A9/" class="series-card" data-card="flutter">
+            <div class="card-glow"></div>
+            <div class="card-border"></div>
+            <div class="card-content">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="5" y="2" width="14" height="20" rx="2"/>
+                  <path d="M12 18h.01"/>
+                  <path d="M9 6h6M9 10h6"/>
+                </svg>
+              </div>
+              <h3 class="card-title">Flutter 30天</h3>
+              <p class="card-desc">使用 Flutter 與 Dart 開發跨平台應用程式</p>
+              <div class="card-footer">
+                <div class="card-tag">
+                  <span class="tag-dot"></span>
+                  30 篇文章
+                </div>
+                <div class="card-arrow">
+                  <span>進入</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="card-hologram"></div>
+          </a>
+          
+          <a href="/categories/%E9%9B%B2%E7%AB%AF%E8%B3%87%E5%AE%89/" class="series-card" data-card="security">
+            <div class="card-glow"></div>
+            <div class="card-border"></div>
+            <div class="card-content">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              <h3 class="card-title">雲端資安</h3>
+              <p class="card-desc">雲端安全、滲透測試與資安防護實戰</p>
+              <div class="card-footer">
+                <div class="card-tag">
+                  <span class="tag-dot"></span>
+                  30 篇文章
+                </div>
+                <div class="card-arrow">
+                  <span>進入</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="card-hologram"></div>
+          </a>
+        </div>
+      </section>
       
+      <!-- 最新文章 -->
+      <section class="recent-section" data-animate="posts">
+        <div class="section-header">
+          <div class="section-line"></div>
+          <h2 class="section-title">
+            <span class="title-icon">◆</span>
+            最新文章
+            <span class="title-icon">◆</span>
+          </h2>
+          <div class="section-line"></div>
+        </div>
+        
+        <div class="posts-container">
+          
+            <article class="post-item" data-index="0">
+              <div class="post-index">01</div>
+              <a href="/macosan-zhuo-ping-ban-huan-jing-xia-de-fu-ping-fang-an-di-yan-chi-you-xian-tou-ping-zhi-nan/" class="post-link">
+                <div class="post-info">
+                  <span class="post-category">
+                    
+                  </span>
+                  <h3 class="post-title">MacOS+安卓平板环境下的副屏方案：低延迟有线投屏指南</h3>
+                </div>
+                <time class="post-date">2026.03.16</time>
+              </a>
+              <div class="post-line"></div>
+            </article>
+          
+            <article class="post-item" data-index="1">
+              <div class="post-index">02</div>
+              <a href="/macos-jin-zhi-xi-tong-geng-xin-ping-bi-xiao-hong-dian/" class="post-link">
+                <div class="post-info">
+                  <span class="post-category">
+                    
+                  </span>
+                  <h3 class="post-title">MacOS禁止系统更新，屏蔽小红点</h3>
+                </div>
+                <time class="post-date">2025.07.02</time>
+              </a>
+              <div class="post-line"></div>
+            </article>
+          
+            <article class="post-item" data-index="2">
+              <div class="post-index">03</div>
+              <a href="/cong-deepinv20-zhuan-yi-dao-uos-zhuan-ye-ban-de-yi-xie-shi-yong-gan-shou/" class="post-link">
+                <div class="post-info">
+                  <span class="post-category">
+                    
+                  </span>
+                  <h3 class="post-title">从deepinV20转移到UOS专业版的一些使用感受</h3>
+                </div>
+                <time class="post-date">2024.07.06</time>
+              </a>
+              <div class="post-line"></div>
+            </article>
+          
+            <article class="post-item" data-index="3">
+              <div class="post-index">04</div>
+              <a href="/deepin-tong-guo-yuan-dai-ma-xiu-gai-dde-dock-kuan-du/" class="post-link">
+                <div class="post-info">
+                  <span class="post-category">
+                    
+                  </span>
+                  <h3 class="post-title">deepin-通过源代码修改dde-dock宽度</h3>
+                </div>
+                <time class="post-date">2024.05.09</time>
+              </a>
+              <div class="post-line"></div>
+            </article>
+          
+            <article class="post-item" data-index="4">
+              <div class="post-index">05</div>
+              <a href="/find-x-quan-wang-tong-pu-tong-ban-ben-jie-suo-xiang-guan-zi-yuan-lian-jie/" class="post-link">
+                <div class="post-info">
+                  <span class="post-category">
+                    
+                  </span>
+                  <h3 class="post-title">Find X 全网通普通版本解锁相关资源链接</h3>
+                </div>
+                <time class="post-date">2023.10.08</time>
+              </a>
+              <div class="post-line"></div>
+            </article>
+          
+        </div>
+        
+        <a href="/archives/" class="view-all-btn">
+          <span class="btn-text">查看所有文章</span>
+          <span class="btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+          <div class="btn-glow"></div>
+        </a>
+      </section>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/%E4%BD%BF%E7%94%A8portainer-agent%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E8%8A%82%E7%82%B9/" data-id="cuidlHtfdQtpyEK0loZxXdCkp" data-title="使用portainer-agent配置管理多个节点" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li></ul>
-
-    </footer>
-  </div>
+  </main>
   
-</article>
-
-
-
-  
-    <article id="post-远程遥控车-实时视频方案之MediaCodec-H264硬编码、解码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E6%96%B9%E6%A1%88%E4%B9%8BMediaCodec-H264%E7%A1%AC%E7%BC%96%E7%A0%81%E3%80%81%E8%A7%A3%E7%A0%81/" class="article-date">
-  <time class="dt-published" datetime="2021-01-14T16:00:00.000Z" itemprop="datePublished">2021-01-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E6%96%B9%E6%A1%88%E4%B9%8BMediaCodec-H264%E7%A1%AC%E7%BC%96%E7%A0%81%E3%80%81%E8%A7%A3%E7%A0%81/">远程遥控车-实时视频方案之MediaCodec.H264硬编码、解码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>其实我从一开始就比较倾向于硬编透传的，利用GPU编码不香吗。在网上找了大量资料之后，github上找到了一个不错的开源例子，具体地址忘了，sorry！这里面，我看到了、学到了我想要的，甚至现在完美的跑了起来。</p>
-<p>网上的一系列MediaCodec配置就不说了，主要说说对比之前我的认知，发现的一些东西。首先是视频分帧，在编码器outputBuffer出数据后，找到sps(0x00 00 00 01 67) 对应十进制就是 0 0 0 1 103，找到IDR帧(0x0000000165) 对应十进制就是 0 0 0 1 101，然后再关IDR帧前面加上sps信息，发送给socket。</p>
-<p>解码端，一开始是有问题的，后面想通了才发现挺好理解的。最开始我是直接读取到socket数据：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">byte[] bytes = new byte[4096];</span><br><span class="line">int le = input.read(bytes);</span><br><span class="line">byte[] out = new byte[le];</span><br><span class="line">System.arraycopy(bytes, 0, out, 0, out.length);</span><br></pre></td></tr></table></figure>
-
-<p>然后放进解码器进行解码，发现还是不行，后来我仔细看那个例子，发现它在发送包之前，加入了一个自定义的头部，就是这个头部，每一次读取到一个完整的帧数据，才能丢进去解码，因为我们读取数据设置的缓冲是4096,一帧数据不止4096的话，那么每次就读取不完，需要等下一次循环，把上一次的一起copy进来，再寻找自定义头部，以头部做分割，下一帧之前的数据，全部放到解码器，然后本次剩余的数据，等待下一次循环，再放到前面去，又这样凑齐下一帧。解码是按帧解的，最后渲染到SurfaceView</p>
-<p>ps：后面阅读了一下H264帧相关文章，其实人家每一帧开头都是00 00 00 01 ，所以可以按这个将数据包拆帧(人笨了，没办法。)</p>
-<p>再一个就是，渲染最好是TextureView，因为这玩意儿操作性更高，可以移动，旋转等等</p>
-<p>现在面临的下一个问题就是延迟，还在排查，目前延迟2s左右，排除手机性能问题。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E6%96%B9%E6%A1%88%E4%B9%8BMediaCodec-H264%E7%A1%AC%E7%BC%96%E7%A0%81%E3%80%81%E8%A7%A3%E7%A0%81/" data-id="cuid3Z1dHNJabBiBMKNM1vxfv" data-title="远程遥控车-实时视频方案之MediaCodec.H264硬编码、解码" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93/" rel="tag">安卓</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-springboot定时任务不执行排查分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/springboot%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%89%A7%E8%A1%8C%E6%8E%92%E6%9F%A5%E5%88%86%E6%9E%90/" class="article-date">
-  <time class="dt-published" datetime="2020-11-19T16:00:00.000Z" itemprop="datePublished">2020-11-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/springboot%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%89%A7%E8%A1%8C%E6%8E%92%E6%9F%A5%E5%88%86%E6%9E%90/">springboot定时任务不执行排查分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>一顿操作猛如虎，写完一跑，我XXX，怎么不执行。接下来，就来分析一下，定时任务不执行的原因排查：</p>
-<p>1.首先，检查Application是否有@EnableScheduling注解，@ComponentScan扫描的包是否有定时任务所在的包。</p>
-<p>2.检查定时任务类是否有@Component注解</p>
-<p>3.检查定时任务类是否有@EnableScheduling注解</p>
-<p>4.检查定时任务方法是否有@Scheduled注解，且注解参数配置正确，具体参数介绍可以看这边文章[定时任务@Scheduled参数简要说明](&#x2F;定时任务-Scheduled参数简要说明&#x2F;</p>
-<p>5.定时任务的编写，要求定是任务的方法不能有参数，不能有返回值，且类中没有其它带注解的方法。</p>
-<p>大概就是这样，逐一排查，就能找到不执行的原因了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/springboot%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%8D%E6%89%A7%E8%A1%8C%E6%8E%92%E6%9F%A5%E5%88%86%E6%9E%90/" data-id="cuidCuMwmj5ideE-PgTNCr5i7" data-title="springboot定时任务不执行排查分析" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-定时任务-Scheduled参数简要说明" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1-Scheduled%E5%8F%82%E6%95%B0%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/" class="article-date">
-  <time class="dt-published" datetime="2020-11-04T16:00:00.000Z" itemprop="datePublished">2020-11-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1-Scheduled%E5%8F%82%E6%95%B0%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/">定时任务@Scheduled参数简要说明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>关于@Scheduled注解类，在org.springframework.scheduling.annotation包下面，感兴趣可以打开看看。主要用的参数就是initialDelay、fixedDelay、fixedRate、cron</p>
-<p><strong>initialDelay</strong> 看名字，初始用的，就是指在启动时，延迟执行的时间，单位是ms，源码默认值<code>long fixedDelay() default -1;</code>，此参数可不写，启动即执行。</p>
-<p><strong>fixedRate</strong>执行周期,单位ms，是指按照参数值指定的频率执行，时间周期是从上一次方法执行开始的时间算起，如果上一次方法阻塞住了，下一次便不会执行，但在阻塞这段时间会累计执行的次数，当不再阻塞时，直接全部执行后面的任务，执行完后，再按照固定频率继续执行。</p>
-<p><strong>fixedDelay</strong>跟前者一样，也是执行周期，但这个是以上一次方法执行完开始计算，如果上一次方法执行阻塞了，那么就一直等，直到上一次执行完，并在参数指定的间隔定后执行下一次。</p>
-<p><strong>cron</strong> 这个很明了，cron表达式，这个参数值是String。执行的方式是与fixedDelay相近的，也是按照上一次结束时间开始计算。</p>
-<p>以上几个参数就是开发中常用的，其它的参数，可以打开源码自己研究研究。实践是检验真理的唯一标准！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1-Scheduled%E5%8F%82%E6%95%B0%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/" data-id="cuidsL5PW2eKn7RPjim2d7GCr" data-title="定时任务@Scheduled参数简要说明" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-远程遥控车-实时视频方案之WEBRTC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E6%96%B9%E6%A1%88%E4%B9%8BWEBRTC/" class="article-date">
-  <time class="dt-published" datetime="2020-11-03T16:00:00.000Z" itemprop="datePublished">2020-11-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E6%96%B9%E6%A1%88%E4%B9%8BWEBRTC/">远程遥控车-实时视频方案之WEBRTC</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>在之前，我研究实时视频踩了太多坑，没办法，没有这方面经验。不过在经过大量的实践之后，从难易程度、实时性、可扩展性、资源占用等多方面对比，最终还是选择了webrtc</p>
-<p>下面简单记录一下思路，webrtc整个流程就不说了，网上有现成代码，主要说说其它的：</p>
-<p>1.信令服务器，我在安卓采集端创建了一个简单的WebSocketServer，实现信令交换。然后在启动时，本机自动连接localhost，注册固定用户，另外一台设备启动输入IP，连接，交换信令实现通信。</p>
-<p>2.单向视频，我用的google的webrtc库，然后网上扒拉一堆初始化代码下来，跑起来发现是个微信式的视频通话界面。这肯定不符合我的需求啊，于是开始着手删减，先是从界面开始砍，采集端为了节省资源，不做任何显示，于是乎，xml布局直接删除了相关的surface，然后接收端不显示自己的画面，只显示远端画面，这里直接不将localview添加进去。但是，我发现，其实播放端还是在往采集端传输视频数据，这也不行呀，带宽就1M，能省就省，于是，开始从初始化开始砍，我尝试在播放端addTrack时，只添加audio，不过不行，这样交换信令时，另一端也不会给video数据过来，导致全程黑屏聊天。这尼玛，不科学，网上搜了一下Firefox的文档，发现有个MediaConstrainsts,在交换信令时会用到它，里面有个参数叫：OfferToReceiveVideo，Firefox对它的描述：<code>传统的布尔选项，用于控制是否向远程对等方提供尝试发送视频的机会。 如果此值为false，即使本地端将发送视频数据，也不会提供远程端点发送视频数据。 如果此值为true，即使本地端将不发送视频数据，也将向远程端点发送视频数据。 默认行为是仅在本地端正在发送视频时才提供接收视频，否则不提供。 为了在现代实现中模拟这种行为，该成员的值为false将设置所有现有视频收发器的方向以排除接收（即设置为“仅发送”或“无效”）。 在现代实现中，该成员的值为true的存在将确保至少有一个收发器集可以接收尚未停止的视频，如果没有，则将创建一个。</code></p>
-<p>看了一下，大概应该是这么个意思吧，然后就用了这个，还没有进一步测试，不知道对不对。暂时先搁置。有知道朋友麻烦说一下</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E6%96%B9%E6%A1%88%E4%B9%8BWEBRTC/" data-id="cuidCM-xDCyBU8lVNh5E8Ry6f" data-title="远程遥控车-实时视频方案之WEBRTC" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93/" rel="tag">安卓</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-远程遥控车-安卓实现远程实时视频功能方案分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E5%8A%9F%E8%83%BD%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90/" class="article-date">
-  <time class="dt-published" datetime="2020-10-20T16:00:00.000Z" itemprop="datePublished">2020-10-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E5%8A%9F%E8%83%BD%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90/">远程遥控车-安卓实现远程实时视频功能方案分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>疫情期间，在抖音上看到一位小姐姐远程操控小车车去买东西，还有实时画面，呀！这东西着实吸引了我，然后去网上搜了一下，买不起～不过咱可是科班出身，DIY那是强项。分析了一下，大概就是，利用4G网络，实时传输终端画面，控制端进行播放。恩，终端，可以用手机代替嘛，现在的安卓机，随随便便拿一个，传输点视频还是没啥压力的。至于控制终端，那简单，搞个开发板呢，ESP8266、或者高级点树莓派之类的。手机开个热点就完事了。</p>
-<p>实践是检验真理的唯一标准！！！于是，我迈出了坚实的第一步，实现安卓视频实时传输，其实这个主流的方案，也就是RTSP推流到服务器，然后用户端进行播放就OK的。可是，服务器呢？？？要勤俭节约，所以，我打算不采用服务器，直接P2P。现在外网基本都穿透不了，怎么进行P2P呢？想起以前做NAS，搞得蒲公英VPN，这家伙，两个端安装上再同时连接，不就相当于在一个局域网了么。网络是搞定了，接下来就是安卓P2P视频了，这个一直卡了我好久，网上搜索了一大堆资料，基本上总结出以下方案：</p>
-<p>（一）spydroid，这是一个开源项目，利用安卓手机摄像头采集视频，然后自身开启一个RTSP的服务器，自己推流给自己，其它设备就可以连接采集端进行播放了。</p>
-<p>（二）自己想的，跟一差不多，只是把RTSP服务器放在了播放端设备，毕竟采集端只是个垃圾手机，性能方面差了点。</p>
-<p>（三）WEBRTC，也是网上的开源项目，这东西貌似很多在用，用来进行多端视频通话的，也是基于P2P</p>
-<p>（四）采集端通过摄像头回调帧数据，进行每一帧压缩透传，设备端按帧展示。</p>
-<p>（五）跟第四差不多，只是透传数据换成了编码后的视频数据。</p>
-<p>下面来说说各方案我所遇到的问题：</p>
-<p>方案一、二，源码我也研究了几天，延迟太高了，也尝试修改源码试了一下，也要3秒的样子，开始以为是设备性能问题（我用了一台骁龙200的手机）。后面我换成了骁龙820、835,这性能也没用，还是差不多的延迟，看了一下源码，视频有两种编码方式，一个是使用Mediacodec，自己编码；还有一个是使用MediaRecorder安卓自带的API获取localsocket输入流的方式，我换成MediaRecorder这种测试了一下，延迟要稍微好一点，要快个半秒的样子，不过整体实时性也太差了。</p>
-<p>方案三，这东西最开始搭了大半天，也能跑，不过不稳定，而且麻烦，需要信令服务器，我也尝试过直接在安卓上搭一个websocket服务器做信令服务器，不过我没有深入研究，网上安卓的资料太少，而且经常编码错误，不过实时性倒是很好，几乎看不出延迟。</p>
-<p>方案四，恩，这个做起来也简单，不用编码，回调每一帧，压缩，通过TCP透传（也用UDP试过，实时性更好），不过这个传输流量太大了，实际根本不科学，那个蒲公英VPN只有1M带宽。</p>
-<p>方案五，这个是我目前在研究的，发现的问题就是，使用mediacodec硬编码，透传过去后，无法播放，开始我以为是我编码写得不对，后面换成MediaRecorder再试了，还是不行，无法播放，后面查了一下，原来是需要PPS跟SPS，播放端拿不到这些信息，就播放不了。spydroid代码里面有提取sps跟pps的代码，我拿来试了还是不行，不知道问题出在哪儿，还差什么。后面继续研究这个方案，这个跟WEBRTC相似，准备参照webrtc流程综合起来再改改试试。</p>
-<p>仅作个人开发过程真实记录，不代表准确与权威。哎，安卓还是太菜了点～努力</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/%E8%BF%9C%E7%A8%8B%E9%81%A5%E6%8E%A7%E8%BD%A6-%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E5%8A%9F%E8%83%BD%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90/" data-id="cuidLGw-qTtBeM_rpOfSAe-Jk" data-title="远程遥控车-安卓实现远程实时视频功能方案分析" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93/" rel="tag">安卓</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-使用firefox提取AFH下载地址" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E4%BD%BF%E7%94%A8firefox%E6%8F%90%E5%8F%96AFH%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/" class="article-date">
-  <time class="dt-published" datetime="2020-09-05T16:00:00.000Z" itemprop="datePublished">2020-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E4%BD%BF%E7%94%A8firefox%E6%8F%90%E5%8F%96AFH%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/">使用firefox提取AFH下载地址</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>此篇仅限于个人记录，如果你连AFH都不知道，请back～</p>
-<p>首先，火狐下载扩展Redirector，如下图<img src="/images/posts/1630896148954.png"></p>
-<p>重点来了!</p>
-<p>1.点击扩展菜单：Edit Redirects,打开编辑页面。</p>
-<p>2.点击Create new redirect,在弹出菜单中，添加如下规则：<img src="/images/posts/1630896461313.png"></p>
-<p>3.为了更好的偷懒，我把规则导出，可以自行保存为“.json”文件，在页面直接进行Import</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;createdBy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Redirector v3.5.3&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;createdAt&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2020-09-06T02:48:32.107Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;redirects&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Example redirect, try going to http://example.com/anywordhere&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;exampleUrl&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/some-word-that-matches-wildcard&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;exampleResult&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://google.com/search?q=some-word-that-matches-wildcard&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;includePattern&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://example.com/*&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;excludePattern&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;patternDesc&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Any word after example.com leads to google search for that word.&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;redirectUrl&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://google.com/search?q=$1&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;patternType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;W&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;processMatches&quot;</span><span class="punctuation">:</span> <span class="string">&quot;noProcessing&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;disabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;grouped&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;appliesTo&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;main_frame&quot;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ajax&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;exampleUrl&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;exampleResult&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://ajax.lug.ustc.edu.cn/ajax/libs/jquery/1.7.1/jquery.min.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;includePattern&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*ajax.googleapis.com*&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;excludePattern&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;patternDesc&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;redirectUrl&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$1ajax.lug.ustc.edu.cn$2&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;patternType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;W&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;processMatches&quot;</span><span class="punctuation">:</span> <span class="string">&quot;noProcessing&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;disabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;grouped&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;appliesTo&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;script&quot;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后进入AFH下载页，点击click here to start download,稍等片刻，就会出现一个下载地址。然后右键，复制链接地址，使用多线程下载工具进行下载（推荐IDM）。 OK，完事儿！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/%E4%BD%BF%E7%94%A8firefox%E6%8F%90%E5%8F%96AFH%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/" data-id="cuid3zTqUsQV5gdnr3x1q5tTJ" data-title="使用firefox提取AFH下载地址" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93/" rel="tag">安卓</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mybatis的NoSuchMethodException异常是怎么回事" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/mybatis%E7%9A%84NoSuchMethodException%E5%BC%82%E5%B8%B8%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B/" class="article-date">
-  <time class="dt-published" datetime="2020-08-16T16:00:00.000Z" itemprop="datePublished">2020-08-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/mybatis%E7%9A%84NoSuchMethodException%E5%BC%82%E5%B8%B8%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B/">mybatis的NoSuchMethodException异常是怎么回事</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>今天随机检查服务器日志，刚好发现一个异常，NoSuchMethodException: xxxx.(java.lang.String, java.lang.String, java.lang.String, java.util.Date···</p>
-<p>这种看字面意思一眼就看出来错误所在了，也不知道是哪位小伙伴写的，粗心hhhh～</p>
-<p>也罢，看到了，顺便就记录一下。这异常是说，XML在映射实体类的时候没有找到这个方法（也可能namespace没写对），这个实体类对应不上，构造参数不一致，先看看实体类有没有写带参构造，无参构造，然后一个一个数，参数顺序跟XML映射的也不能错。</p>
-<p>这种只要细心一般就不会出现。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/mybatis%E7%9A%84NoSuchMethodException%E5%BC%82%E5%B8%B8%E6%98%AF%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B/" data-id="cuid0jbODCi8F5c-DS_-_Or2U" data-title="mybatis的NoSuchMethodException异常是怎么回事" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-文件同步推荐-坚果云" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5%E6%8E%A8%E8%8D%90-%E5%9D%9A%E6%9E%9C%E4%BA%91/" class="article-date">
-  <time class="dt-published" datetime="2020-03-12T16:00:00.000Z" itemprop="datePublished">2020-03-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5%E6%8E%A8%E8%8D%90-%E5%9D%9A%E6%9E%9C%E4%BA%91/">文件同步推荐:坚果云</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>官方地址:<a target="_blank" rel="noopener" href="https://www.jianguoyun.com/">https://www.jianguoyun.com</a></p>
-<p>如果你正面临着这样的问题:下班回家有资料要处理,得随时揣个U盘或者移动硬盘什么的,回家拷贝到电脑上继续搞.</p>
-<p>或者说,我想在手机上看看家里电脑里的照片什么的.</p>
-<p>那么,这东西适合你.</p>
-<p>客户端支持几乎所有平台:WIndows,Linux,Mac,安卓,IOS.</p>
-<p>官方对其介绍是:</p>
-<p>全平台自动同步</p>
-<p>将任何文件夹同步到“云端”、电脑、手机、iPad，保证您随时访问最新文件</p>
-<p>协同办公</p>
-<p>可设置文件夹访问权限，文件发生任意修改均会被同步至所有设备，保证同事间版本一致</p>
-<p>邮件&#x2F;链接分享</p>
-<p>只需点击鼠标，即可通过邮件&#x2F;URL链接共享文件、照片、视频</p>
-<p>加密备份</p>
-<p>同步文件夹中的文件会被自动加密并备份到云存储，即便电脑损坏，仍可从云存储找回</p>
-<p>文件时光机</p>
-<p>只需点击鼠标，即可恢复之前的文件版本；即使是数月前删除的文件，也可在回收站中找回。</p>
-<p>坚果云可取代：电子邮件附件、U盘、移动硬盘、FTP…让您体验真正的云端魅力！</p>
-<p>目前我正在使用,相比于百度网盘,我觉得它更像是一个同步工具,轻量,没有那么多恶心的商业化气息.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5%E6%8E%A8%E8%8D%90-%E5%9D%9A%E6%9E%9C%E4%BA%91/" data-id="cuidZLMU80S4yRSGJZcvERk84" data-title="文件同步推荐:坚果云" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Springboot项目启动出现Please-sign-in页面" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Springboot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%E5%87%BA%E7%8E%B0Please-sign-in%E9%A1%B5%E9%9D%A2/" class="article-date">
-  <time class="dt-published" datetime="2020-02-10T16:00:00.000Z" itemprop="datePublished">2020-02-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Springboot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%E5%87%BA%E7%8E%B0Please-sign-in%E9%A1%B5%E9%9D%A2/">Springboot项目启动出现Please sign in页面</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>今天给同事写一个小工具，把以前的项目扒出来，写了几段代码。启动，打开浏览器，嗯？怎么出现了这页面。</p>
-<p><img src="/images/posts/1630654795618.png"></p>
-<p>一番搜索发现，原来这个是整合了security，然后又没有配置，所以才会出现这个页面。</p>
-<p>解决方法就是：删除相关依赖。或者在启动类添加注解排除相关类：<code>@SpringBootApplication(exclude = {SecurityAutoConfiguration.class,SecurityFilterAutoConfiguration.class})</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://cqboy.top/Springboot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%E5%87%BA%E7%8E%B0Please-sign-in%E9%A1%B5%E9%9D%A2/" data-id="cuidnmPBef5ASRO184wEex8Vt" data-title="Springboot项目启动出现Please sign in页面" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%8D%93/" rel="tag">安卓</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+  <!-- 側邊裝飾 -->
+  <div class="side-decor left">
+    <div class="decor-line"></div>
+    <div class="decor-nodes">
+      <span></span><span></span><span></span><span></span>
     </div>
   </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12.5px;">Mac</a> <a href="/tags/nodejs/" style="font-size: 12.5px;">nodejs</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 17.5px;">后端</a> <a href="/tags/%E5%AE%89%E5%8D%93/" style="font-size: 20px;">安卓</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 12.5px;">软件</a>
+  <div class="side-decor right">
+    <div class="decor-bars">
+      <span></span><span></span><span></span><span></span><span></span>
     </div>
   </div>
-
   
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 zzq</p>
+    <p>
+      Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 
+      | Theme: Cyberpunk2077
+    </p>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">三月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/macosan-zhuo-ping-ban-huan-jing-xia-de-fu-ping-fang-an-di-yan-chi-you-xian-tou-ping-zhi-nan/">MacOS+安卓平板环境下的副屏方案：低延迟有线投屏指南</a>
-          </li>
-        
-          <li>
-            <a href="/macos-jin-zhi-xi-tong-geng-xin-ping-bi-xiao-hong-dian/">MacOS禁止系统更新，屏蔽小红点</a>
-          </li>
-        
-          <li>
-            <a href="/cong-deepinv20-zhuan-yi-dao-uos-zhuan-ye-ban-de-yi-xie-shi-yong-gan-shou/">从deepinV20转移到UOS专业版的一些使用感受</a>
-          </li>
-        
-          <li>
-            <a href="/deepin-tong-guo-yuan-dai-ma-xiu-gai-dde-dock-kuan-du/">deepin-通过源代码修改dde-dock宽度</a>
-          </li>
-        
-          <li>
-            <a href="/find-x-quan-wang-tong-pu-tong-ban-ben-jie-suo-xiang-guan-zi-yuan-lian-jie/">Find X 全网通普通版本解锁相关资源链接</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="social-links">
       
-      &copy; 2026 zzq<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+        <a href="https://github.com/ceeyu" target="_blank" rel="noopener">GitHub</a>
+      
+        <a href="https://ithelp.ithome.com.tw/users/20151593" target="_blank" rel="noopener">iThome</a>
+      
     </div>
+    
   </div>
 </footer>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+<!-- Prism.js 程式碼高亮 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<!-- 預載入常用語言 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+<!-- GSAP 動畫庫 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- 自定義腳本 -->
+<script defer src="/js/main.js"></script>
+<script defer src="/js/gsap-animations.js"></script>
+<script defer src="/js/cyberpunk.js"></script>
+
+<!-- 初始化程式碼高亮 -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Hexo 使用 figure.highlight 結構，需要轉換為 Prism 可識別的格式
+    document.querySelectorAll('figure.highlight').forEach(function(figure) {
+      const codeTable = figure.querySelector('table');
+      if (!codeTable) return;
+      
+      const codeCell = codeTable.querySelector('td.code pre');
+      if (!codeCell) return;
+      
+      // 獲取程式碼內容
+      const lines = codeCell.querySelectorAll('.line');
+      let codeContent = '';
+      lines.forEach(function(line) {
+        codeContent += line.textContent + '\n';
+      });
+      
+      // 檢測語言
+      let lang = 'plaintext';
+      const figureClass = figure.className;
+      
+      // 從 figure class 獲取語言
+      const langMatch = figureClass.match(/highlight\s+(\w+)/);
+      if (langMatch && langMatch[1] !== 'plaintext') {
+        lang = langMatch[1];
+      }
+      
+      // 如果是 plaintext，嘗試自動檢測
+      if (lang === 'plaintext') {
+        if (codeContent.includes('#include') || codeContent.includes('int main') || 
+            codeContent.includes('cout') || codeContent.includes('cin') ||
+            codeContent.includes('iostream') || codeContent.includes('using namespace')) {
+          lang = 'cpp';
+        } else if (codeContent.includes('def ') || codeContent.includes('import ') || codeContent.includes('print(')) {
+          lang = 'python';
+        } else if (codeContent.includes('function') || codeContent.includes('const ') || 
+                   codeContent.includes('let ') || codeContent.includes('=>')) {
+          lang = 'javascript';
+        } else if (codeContent.includes('public class') || codeContent.includes('public static void')) {
+          lang = 'java';
+        } else if (codeContent.includes('Widget') || codeContent.includes('Flutter') || codeContent.includes('@override')) {
+          lang = 'dart';
+        }
+      }
+      
+      // 創建新的 pre > code 結構
+      const pre = document.createElement('pre');
+      pre.className = 'line-numbers language-' + lang;
+      
+      const code = document.createElement('code');
+      code.className = 'language-' + lang;
+      code.textContent = codeContent.trim();
+      
+      pre.appendChild(code);
+      
+      // 替換原本的 figure
+      figure.parentNode.replaceChild(pre, figure);
+    });
     
+    // 也處理標準的 pre > code
+    document.querySelectorAll('pre code:not([class*="language-"])').forEach(function(block) {
+      const content = block.textContent;
+      let lang = 'plaintext';
+      
+      if (content.includes('#include') || content.includes('int main')) {
+        lang = 'cpp';
+      } else if (content.includes('def ') || content.includes('import ')) {
+        lang = 'python';
+      } else if (content.includes('function') || content.includes('const ')) {
+        lang = 'javascript';
+      }
+      
+      block.classList.add('language-' + lang);
+      block.parentElement.classList.add('language-' + lang, 'line-numbers');
+    });
+    
+    // 執行 Prism 高亮
+    if (typeof Prism !== 'undefined') {
+      Prism.highlightAll();
+    }
+  });
+</script>
 
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
 </body>
 </html>
