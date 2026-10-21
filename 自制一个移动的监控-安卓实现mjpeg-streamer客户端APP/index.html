@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>自制一个移动的监控-安卓实现mjpeg-streamer客户端APP | zzq的个人主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前文章提到,用mjpeg-streamer做视频服务器,于是乎,就想弄一个随时可以看的APP出来,利用安卓的webview,再配合HTML嵌入imgsrc,一个像模像样的客户端就出来了. 主要部分代码 123456789101112131415161718192021222324252627  private void initWebView()&#123;      ip&#x3D;&quot;http:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自制一个移动的监控-安卓实现mjpeg-streamer客户端APP">
+<meta property="og:url" content="https://cqboy.top/%E8%87%AA%E5%88%B6%E4%B8%80%E4%B8%AA%E7%A7%BB%E5%8A%A8%E7%9A%84%E7%9B%91%E6%8E%A7-%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0mjpeg-streamer%E5%AE%A2%E6%88%B7%E7%AB%AFAPP/index.html">
+<meta property="og:site_name" content="zzq的个人主页">
+<meta property="og:description" content="前文章提到,用mjpeg-streamer做视频服务器,于是乎,就想弄一个随时可以看的APP出来,利用安卓的webview,再配合HTML嵌入imgsrc,一个像模像样的客户端就出来了. 主要部分代码 123456789101112131415161718192021222324252627  private void initWebView()&#123;      ip&#x3D;&quot;http:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2019-02-11T16:00:00.000Z">
+<meta property="article:author" content="zzq">
+<meta property="article:tag" content="安卓">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="zzq的个人主页" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zzq的个人主页</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cqboy.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-自制一个移动的监控-安卓实现mjpeg-streamer客户端APP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/%E8%87%AA%E5%88%B6%E4%B8%80%E4%B8%AA%E7%A7%BB%E5%8A%A8%E7%9A%84%E7%9B%91%E6%8E%A7-%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0mjpeg-streamer%E5%AE%A2%E6%88%B7%E7%AB%AFAPP/" class="article-date">
+  <time class="dt-published" datetime="2019-02-11T16:00:00.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      自制一个移动的监控-安卓实现mjpeg-streamer客户端APP
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>前文章提到,用mjpeg-streamer做视频服务器,于是乎,就想弄一个随时可以看的APP出来,利用安卓的webview,再配合HTML嵌入imgsrc,一个像模像样的客户端就出来了.</p>
+<p>主要部分代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  private void initWebView()&#123;</span><br><span class="line">      ip=&quot;http://172.9.19.10:8080/?action=stream&quot;</span><br><span class="line">      Log.d(TAG,ip);</span><br><span class="line">//准备一个html页面,这里可以做成文件读取.</span><br><span class="line">      html=&quot;<span class="meta">&lt;!DOCTYPE <span class="keyword">html</span> <span class="keyword">PUBLIC</span> \<span class="string">&quot;-//W3C//DTD XHTML 1.1//EN\&quot;\&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\&quot;&gt;&lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; xml:lang=\&quot;en\&quot;&gt;&lt;head&gt;&lt;title&gt;MJPG-streamer&lt;/title&gt;&lt;meta name=\&quot;viewport\&quot; content=\&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no\&quot; /&gt;&lt;meta http-equiv=\&quot;content-type\&quot; content=\&quot;text/html; charset=iso-8859-1\&quot; /&gt;&lt;/head&gt;&lt;body align=\&quot;center\&quot; style=\&quot;background:black;margin:0px;padding:0px;\&quot;&gt;&lt;img style=\&quot;width:100%;height:auto; id=\&quot;streamimage\&quot; src=\&quot;&quot;</span>+ip+<span class="string">&quot;\&quot; /&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>;</span></span><br><span class="line"><span class="meta">      <span class="keyword">webView</span> = (<span class="keyword">WebView</span>) <span class="keyword">findViewById</span>(R.<span class="keyword">id</span>.<span class="keyword">webview</span>);</span></span><br><span class="line"><span class="meta">      //加载HTML字符内容,由加载出来的网页img标签展示网络视频画面</span></span><br><span class="line"><span class="meta">      <span class="keyword">webView</span>.loadDataWithBaseURL(&quot;&quot;, <span class="keyword">html</span>, &quot;<span class="keyword">text</span>/<span class="keyword">html</span>&quot;,&quot;<span class="keyword">UTF-8</span>&quot;, &quot;&quot;);</span></span><br><span class="line"><span class="meta">      <span class="keyword">webView</span>.setWebViewClient(<span class="keyword">webViewClient</span>);</span></span><br><span class="line"><span class="meta">      <span class="keyword">WebSettings</span> <span class="keyword">webSettings</span>=webView.getSettings();</span></span><br><span class="line"><span class="meta">      //允许使用js,可以不设置</span></span><br><span class="line"><span class="meta">      <span class="keyword">webSettings</span>.setJavaScriptEnabled(<span class="keyword">true</span>);</span></span><br><span class="line"><span class="meta">      //防止乱码</span></span><br><span class="line"><span class="meta">      <span class="keyword">webSettings</span>.setDefaultTextEncodingName(&quot;<span class="keyword">UTF-8</span>&quot;);</span></span><br><span class="line"><span class="meta">      /**</span></span><br><span class="line"><span class="meta">       * <span class="keyword">LOAD_CACHE_ONLY</span>: 不使用网络，只读取本地缓存数据</span></span><br><span class="line"><span class="meta">       * <span class="keyword">LOAD_DEFAULT</span>: （默认）根据cache-control决定是否从网络上取数据。</span></span><br><span class="line"><span class="meta">       * <span class="keyword">LOAD_NO_CACHE</span>: 不使用缓存，只从网络获取数据.</span></span><br><span class="line"><span class="meta">       * <span class="keyword">LOAD_CACHE_ELSE_NETWORK</span>，只要本地有，无论是否过期，或者no-cache，都使用缓存中的数据。</span></span><br><span class="line"><span class="meta">       */</span></span><br><span class="line"><span class="meta">      <span class="keyword">webSettings</span>.setCacheMode(<span class="keyword">WebSettings</span>.<span class="keyword">LOAD_NO_CACHE</span>);//不使用缓存，只从网络获取数据.</span></span><br><span class="line"><span class="meta">      //不需要屏幕缩放</span></span><br><span class="line"><span class="meta">      <span class="keyword">webSettings</span>.setSupportZoom(<span class="keyword">false</span>);</span></span><br><span class="line"><span class="meta">      <span class="keyword">webSettings</span>.setDisplayZoomControls(<span class="keyword">false</span>);</span></span><br><span class="line"><span class="meta">      //支持viewport属性</span></span><br><span class="line"><span class="meta">      <span class="keyword">webSettings</span>.setUseWideViewPort(<span class="keyword">true</span>);</span></span><br><span class="line"><span class="meta">  &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>OK,打包运行,效果就出来了,还可以配个按钮,做个刷新</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cqboy.top/%E8%87%AA%E5%88%B6%E4%B8%80%E4%B8%AA%E7%A7%BB%E5%8A%A8%E7%9A%84%E7%9B%91%E6%8E%A7-%E5%AE%89%E5%8D%93%E5%AE%9E%E7%8E%B0mjpeg-streamer%E5%AE%A2%E6%88%B7%E7%AB%AFAPP/" data-id="cuid3M-5DLailknHa3H_UXm87" data-title="自制一个移动的监控-安卓实现mjpeg-streamer客户端APP" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93/" rel="tag">安卓</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E5%AF%B9redis%E9%9B%AA%E5%B4%A9%E3%80%81%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E7%9A%84%E6%B5%85%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          对redis雪崩、穿透、击穿的浅解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E9%AB%98%E6%95%88%E7%8E%87%E5%9B%BE%E4%BC%A0mjpeg-streamer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">高效率图传mjpeg-streamer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/" rel="tag">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%8D%93/" rel="tag">安卓</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12.5px;">Mac</a> <a href="/tags/nodejs/" style="font-size: 12.5px;">nodejs</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 17.5px;">后端</a> <a href="/tags/%E5%AE%89%E5%8D%93/" style="font-size: 20px;">安卓</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 12.5px;">软件</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">三月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/macosan-zhuo-ping-ban-huan-jing-xia-de-fu-ping-fang-an-di-yan-chi-you-xian-tou-ping-zhi-nan/">MacOS+安卓平板环境下的副屏方案：低延迟有线投屏指南</a>
+          </li>
+        
+          <li>
+            <a href="/macos-jin-zhi-xi-tong-geng-xin-ping-bi-xiao-hong-dian/">MacOS禁止系统更新，屏蔽小红点</a>
+          </li>
+        
+          <li>
+            <a href="/cong-deepinv20-zhuan-yi-dao-uos-zhuan-ye-ban-de-yi-xie-shi-yong-gan-shou/">从deepinV20转移到UOS专业版的一些使用感受</a>
+          </li>
+        
+          <li>
+            <a href="/deepin-tong-guo-yuan-dai-ma-xiu-gai-dde-dock-kuan-du/">deepin-通过源代码修改dde-dock宽度</a>
+          </li>
+        
+          <li>
+            <a href="/find-x-quan-wang-tong-pu-tong-ban-ben-jie-suo-xiang-guan-zi-yuan-lian-jie/">Find X 全网通普通版本解锁相关资源链接</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 zzq<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
