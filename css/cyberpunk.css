@@ -1091,3 +1091,23 @@
     font-size: 1rem;
   }
 }
+
+/* ===== 評論區塊 (Giscus) ===== */
+.comments-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.comments-title {
+  font-family: 'Orbitron', 'Russo One', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+.giscus-wrap {
+  min-height: 120px;
+}
