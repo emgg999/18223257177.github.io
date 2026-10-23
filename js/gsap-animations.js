@@ -73,29 +73,45 @@ function initPageTransition() {
 // ===== Header 動畫 =====
 function initHeaderAnimation() {
   const header = document.querySelector('.site-header');
-  const title = document.querySelector('.site-title');
+  const title = document.querySelector('.site-title') || document.querySelector('.site-logo');
   const navLinks = document.querySelectorAll('.site-nav a');
 
   if (!header) return;
 
-  // 標題動畫
-  gsap.from(title, {
-    duration: CONFIG.duration.slow,
-    y: -50,
-    opacity: 0,
-    ease: CONFIG.ease.bounce,
-    delay: 0.5
-  });
+  // 標題動畫（同樣用 fromTo 固定終點 y:0，結束後 clearProps，
+  // 避免 from() 把結束值記錯導致 logo 被永久上移/透明）
+  if (title) {
+    gsap.fromTo(title,
+      { opacity: 0, y: -50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: CONFIG.duration.slow,
+        ease: CONFIG.ease.bounce,
+        delay: 0.5,
+        clearProps: 'opacity,transform'
+      }
+    );
+  }
 
   // 導航連結依序出現
-  gsap.from(navLinks, {
-    duration: CONFIG.duration.normal,
-    y: -30,
-    opacity: 0,
-    stagger: 0.1,
-    ease: CONFIG.ease.smooth,
-    delay: 0.7
-  });
+  // 注意：必須用 fromTo 並顯式把終點 opacity 設為 1，
+  // 否則 from() 會把結束值記成 0，導致導航文字永久不可見。
+  // 動畫結束後 clearProps 清除內聯樣式，回到 CSS 控制。
+  if (navLinks.length) {
+    gsap.fromTo(navLinks,
+      { opacity: 0, y: -30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: CONFIG.duration.normal,
+        stagger: 0.1,
+        ease: CONFIG.ease.smooth,
+        delay: 0.7,
+        clearProps: 'opacity,transform'
+      }
+    );
+  }
 
   // 滾動時 Header 效果
   let lastScroll = 0;
