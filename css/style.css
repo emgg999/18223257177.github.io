@@ -1211,6 +1211,7 @@ a:hover {
   flex: 0 0 auto;
   display: block;
   width: 120px;
+  max-width: 240px;
   height: 68px;
   border-radius: var(--radius-sm);
   overflow: hidden;
